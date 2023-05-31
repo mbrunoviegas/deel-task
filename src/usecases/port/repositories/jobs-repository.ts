@@ -10,4 +10,6 @@ export interface ListJobsOptions {
 
 export interface JobsRepository {
   listJobs(options: ListJobsOptions): Promise<Job[]>;
+  getJobById(jobId: number): Promise<Job>;
+  payJob(jobId: number, clientBalance: number): Promise<void>;
 }

@@ -1,8 +1,8 @@
+import { ListUnpaidJobsUseCase } from '@usecases/jobs/list-unpaid-jobs/list-unpaid-jobs-use-case';
 import { inject, injectable } from 'tsyringe';
 import { Controller } from '../port/controller';
 import { Request } from '../port/request';
 import { Response } from '../port/response';
-import { ListUnpaidJobsUseCase } from '@usecases/jobs/list-unpaid-jobs-use-case';
 
 @injectable()
 export class ListUnpaidJobsController extends Controller {

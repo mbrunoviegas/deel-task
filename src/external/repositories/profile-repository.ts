@@ -10,6 +10,7 @@ import {
 import { QueryTypes } from 'sequelize';
 
 export class ProfileRepositorySequelize implements ProfileRepository {
+ 
   async getProfileById(profileId: number): Promise<Profile> {
     const transaction = await sequelize.transaction();
     
@@ -116,6 +117,33 @@ export class ProfileRepositorySequelize implements ProfileRepository {
         },
         transaction,
       });
+      await transaction.commit();
+    } catch (error) {
+      console.log(error);
+      await transaction.rollback();
+      throw error;
+    }
+  }
+
+  async transferJobPayment(clientId: number, contractorId: number, amount: number): Promise<void> {
+    const transaction = await sequelize.transaction();
+    
+    try {
+      await ProfileSequelize.decrement('balance', {
+        by: amount,
+        where: {
+          id: clientId,
+        },
+        transaction,
+      });
+      await ProfileSequelize.increment('balance', {
+        by: amount, 
+        where: { 
+          id: contractorId,
+        },
+        transaction,
+      });
+
       await transaction.commit();
     } catch (error) {
       console.log(error);

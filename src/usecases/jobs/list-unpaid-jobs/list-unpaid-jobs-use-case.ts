@@ -1,10 +1,10 @@
+import { ContractStatus } from '@entities/enum/contract-status';
+import { failure, success } from '@usecases/helpers/either';
+import { JobsRepository } from '@usecases/port/repositories/jobs-repository';
 import { UseCase } from '@usecases/port/use-case';
+import { inject, injectable } from 'tsyringe';
 import { ListUnpaidJobsRequest } from './interfaces/list-unpaid-jobs-request';
 import { ListUnpaidJobsResponseEither } from './interfaces/list-unpaid-jobs-response';
-import { failure, success } from '@usecases/helpers/either';
-import { inject, injectable } from 'tsyringe';
-import { JobsRepository } from '@usecases/port/repositories/jobs-repository';
-import { ContractStatus } from '@entities/enum/contract-status';
 
 export interface ListUnpaidJobsUseCase extends UseCase<ListUnpaidJobsRequest, ListUnpaidJobsResponseEither> { }
 

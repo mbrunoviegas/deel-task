@@ -19,4 +19,13 @@ export abstract class Controller {
       },
     };
   }
+
+  protected notFoundError(message: string): Response {
+    return {
+      statusCode: 404, 
+      body: {
+        message,
+      },
+    };
+  }
 }

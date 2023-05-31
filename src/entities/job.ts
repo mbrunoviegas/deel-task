@@ -9,6 +9,10 @@ export class Job {
 
   paymentDate: Date;
 
+  contractorId?: number;
+
+  clientId?: number;
+
   createdAt: Date;
 
   updatedAt: Date;
