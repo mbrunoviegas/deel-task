@@ -12,9 +12,7 @@ export class JobPayment implements JobPaymentUseCase {
   constructor(
     @inject('JobsRepository')
     private jobsRepository: JobsRepository,
-  ) {
-    
-  }
+  ) {}
 
   async execute(request: JobPaymentRequest): Promise<JobPaymentResponseEither> {
     try {

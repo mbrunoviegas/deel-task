@@ -20,7 +20,7 @@
       "@entities/*": ["./src/entities/*"],
       "@external/*": ["./src/external/*"],
       "@main/*": ["./src/main/*"],
-      "@usecases/*": ["./src/usecases/*"],
+      "@usecases/*": ["./src/usecases/*"]
     }
   },
   "compileOnSave": false

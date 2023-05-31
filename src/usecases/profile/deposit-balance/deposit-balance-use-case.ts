@@ -7,6 +7,7 @@ import { ContractStatus } from '@entities/enum/contract-status';
 import { Job } from '@entities/job';
 import { ProfileRepository } from '@usecases/port/repositories/profile-repository';
 import { failure, success } from '@usecases/helpers/either';
+import { InvalidAmountError } from '@usecases/errors/invalid-amount-error';
 
 export interface DepositBalanceUseCase extends UseCase<DepositBalanceRequest, DepositBalanceResponseEither> { }
 
@@ -31,6 +32,8 @@ export class DepositBalance implements DepositBalanceUseCase {
   
       if (this.isAbleToDeposit(unpaidJobs, request.depositAmount)) {
         await this.profileRepository.depositBalance(request.userId, request.depositAmount);
+      } else {
+        return failure(new InvalidAmountError());
       }
   
       return success();

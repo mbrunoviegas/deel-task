@@ -4,6 +4,7 @@ import { GetContractByIdResponseEither } from './interfaces/get-contract-by-id-r
 import { failure, success } from '@usecases/helpers/either';
 import { inject, injectable } from 'tsyringe';
 import { ContractsRepository } from '@usecases/port/repositories/contracts-repository';
+import { ContractNotFoundError } from '@usecases/errors/contract-not-found-error';
 
 export interface GetContractByIdUseCase extends UseCase<GetContractByIdRequest, GetContractByIdResponseEither> { }
 
@@ -19,7 +20,7 @@ export class GetContractById implements GetContractByIdUseCase {
       const contract = await this.contractsRepository.getById(request.contractId, { profileId: request.profile.id });
 
       if (!contract) {
-        return failure(new Error('Contract doesn\'t exist')); // TODO Update for better error handling1
+        return failure(new ContractNotFoundError());
       }
 
       return success(contract);
