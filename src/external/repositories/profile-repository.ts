@@ -104,4 +104,23 @@ export class ProfileRepositorySequelize implements ProfileRepository {
       throw error;
     }
   }
+
+  async depositBalance(profileId: number, depositAmount: number): Promise<void> {
+    const transaction = await sequelize.transaction();
+    
+    try {
+      await ProfileSequelize.increment('balance', {
+        by: depositAmount,
+        where: {
+          id: profileId,
+        },
+        transaction,
+      });
+      await transaction.commit();
+    } catch (error) {
+      console.log(error);
+      await transaction.rollback();
+      throw error;
+    }
+  }
 }

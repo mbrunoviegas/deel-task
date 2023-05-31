@@ -4,7 +4,7 @@ import { Response } from './response';
 export abstract class Controller {
   abstract handle(request: Request): Promise<Response>;
 
-  protected ok<T>(body: T): Response<T> {
+  protected ok<T>(body?: T): Response<T> {
     return {
       statusCode: 200,
       body,

@@ -18,8 +18,10 @@ export class ListUnpaidJobs implements ListUnpaidJobsUseCase {
   async execute(request: ListUnpaidJobsRequest): Promise<ListUnpaidJobsResponseEither> {
     try {
       const response = await this.jobsRepository.listJobs({
-        profileId: request.profile.id,
+        clientId: request.profile.id,
+        contractorId: request.profile.id,
         contractStatus: [ContractStatus.InProgress],
+        paid: false,
       });
 
       return success(response);

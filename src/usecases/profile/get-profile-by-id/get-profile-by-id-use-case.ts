@@ -1,9 +1,9 @@
-import { UseCase } from '@usecases/port/use-case';
-import { GetProfileByIdRequest } from './get-profile-by-id/interfaces/get-profile-by-id-request';
-import { GetProfileByIdResponseEither } from './get-profile-by-id/interfaces/get-profile-by-id-response';
-import { inject, injectable } from 'tsyringe';
-import { ProfileRepository } from '@usecases/port/repositories/profile-repository';
 import { failure, success } from '@usecases/helpers/either';
+import { ProfileRepository } from '@usecases/port/repositories/profile-repository';
+import { UseCase } from '@usecases/port/use-case';
+import { inject, injectable } from 'tsyringe';
+import { GetProfileByIdRequest } from './interfaces/get-profile-by-id-request';
+import { GetProfileByIdResponseEither } from './interfaces/get-profile-by-id-response';
 
 export interface GetProfileByIdUseCase extends UseCase<GetProfileByIdRequest, GetProfileByIdResponseEither> { }
 

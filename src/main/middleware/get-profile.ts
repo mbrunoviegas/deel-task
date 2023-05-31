@@ -1,5 +1,5 @@
 import { FactoryDependency } from '@external/dependency-injection/factory';
-import { GetProfileByIdUseCase } from '@usecases/profile/get-profile-by-id-use-case';
+import { GetProfileByIdUseCase } from '@usecases/profile/get-profile-by-id/get-profile-by-id-use-case';
 import { NextFunction, Request, Response } from 'express';
 
 export const getProfile = async (req: Request, res: Response, next: NextFunction) => {

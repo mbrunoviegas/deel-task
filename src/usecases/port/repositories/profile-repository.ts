@@ -22,4 +22,5 @@ export interface ProfileRepository {
   getProfileById(profileId: number): Promise<Profile>;
   getBestProfession(options: GetBestProfessionOptions): Promise<string>;
   getBestClients(options: GetBestClientOptions): Promise<BestClientDetails[]>;
+  depositBalance(profileId: number, depositAmount: number): Promise<void>;
 }

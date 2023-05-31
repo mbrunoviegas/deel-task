@@ -3,7 +3,9 @@ import { Job } from '@entities/job';
 
 export interface ListJobsOptions {
   contractStatus: ContractStatus[];
-  profileId: number;
+  clientId?: number;
+  contractorId?: number;
+  paid: boolean;
 }
 
 export interface JobsRepository {

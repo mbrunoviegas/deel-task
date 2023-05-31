@@ -13,7 +13,9 @@ export default class Job extends Model {
   @Column(DataType.DECIMAL(12, 2))
     price: number;
 
-  @Column
+  @Column({
+    defaultValue: false,
+  })
     paid: boolean;
     
   @Column
