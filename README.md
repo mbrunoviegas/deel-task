@@ -4,9 +4,21 @@
 
 This backend exercise involves building a Node.js/Express.js app that will serve a REST API. We imagine you should spend around 3 hours at implement this feature.
 
+## Marcelo's Notes
+
+**Concurrency**: To handle the problems of concurrency, I used Optimistic Locking from Sequelize, but I also thought about using an external service like Redis, to use a FIFO strategy and manually prevent concurrency problems. I didn't implement this because of time.
+**TypeScript**: I've made the project using TypeScript, because I think it would be a better option once it has lots of good features and helps with maintaince, readability and development.
+**Unit Tests**: I've made simple unit tests for the useCases, I wanted to implement tests for all files, but I was not able because of time. I'd also implement integration tests, but it wasn't possible.
+**Sequelize**: I used both model and raw queries, depending on the situation.
+**Architecture**: I used Clean Architecture approach.
+**Routes**: I've updated some routes, according the guideline I like to follow from Microsoft, you can check it [here](https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design).
+**Swagger**: I've created a Swagger configuration which can be accessed using http://localhost:3001/api-docs
+**README**: I've me some change is this README, according the updated I did in the code.
+
 ## Data Models
 
-> **All models are defined in src/model.js**
+> **All models are defined in src/external/database/models/*.model.ts**
+> **All project entities are defined in src/entities/*.ts**
 
 ### Profile
 
@@ -32,15 +44,15 @@ The exercise requires [Node.js](https://nodejs.org/en/) to be installed. We reco
 
 1. In the repo root directory, run `npm install` to gather all dependencies.
 
-1. Next, `npm run seed` will seed the local SQLite database. **Warning: This will drop the database if it exists**. The database lives in a local file `database.sqlite3`.
+1. Next, `npm run seed` will seed the local SQLite database. This will build the project and run the JS script. **Warning: This will drop the database if it exists**. The database lives in a local file `database.sqlite3`.
 
-1. Then run `npm start` which should start both the server and the React client.
+1. Then run `npm run start` which will start the server using ts-node-dev.
 
 ❗️ **Make sure you commit all changes to the master branch!**
 
 ## Technical Notes
 
-- The server is running with [nodemon](https://nodemon.io/) which will automatically restart for you when you modify and save a file.
+- The server is running with [ts-node-dev](https://www.npmjs.com/package/ts-node-dev) which will automatically restart for you when you modify and save a file.
 
 - The database provider is SQLite, which will store data in a file local to your repository called `database.sqlite3`. The ORM [Sequelize](http://docs.sequelizejs.com/) is on top of it. You should only have to interact with Sequelize - **please spend some time reading sequelize documentation before starting the exercise.**
 
@@ -61,9 +73,9 @@ Below is a list of the required API's for the application.
 
 1. **_POST_** `/balances/deposit/:userId` - Deposits money into the the the balance of a client, a client can't deposit more than 25% his total of jobs to pay. (at the deposit moment)
 
-1. **_GET_** `/admin/best-profession?start=<date>&end=<date>` - Returns the profession that earned the most money (sum of jobs paid) for any contactor that worked in the query time range.
+1. **_GET_** `/admin/profession/best?start=<date>&end=<date>` - Returns the profession that earned the most money (sum of jobs paid) for any contactor that worked in the query time range.
 
-1. **_GET_** `/admin/best-clients?start=<date>&end=<date>&limit=<integer>` - returns the clients the paid the most for jobs in the query time period. limit query parameter should be applied, default limit is 2.
+1. **_GET_** `/admin/clients/best?start=<date>&end=<date>&limit=<integer>` - returns the clients the paid the most for jobs in the query time period. limit query parameter should be applied, default limit is 2.
 
 ```
  [
