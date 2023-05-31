@@ -13,7 +13,6 @@ export class GetBestClientsController extends Controller {
     super();
   }
 
-
   async handle(request: Request): Promise<Response> {
     const { start, end, limit } = request.query as {
       start: Date;

@@ -13,7 +13,6 @@ export class GetBestProfessionController extends Controller {
     super();
   }
 
-
   async handle(request: Request): Promise<Response> {
     const { start, end } = request.query as Record<string, Date>;
 

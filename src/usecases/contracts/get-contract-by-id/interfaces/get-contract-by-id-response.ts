@@ -5,7 +5,7 @@ export interface GetContractByIdResponse {
   id: number;
   terms: string;
   status: ContractStatus;
-  contractId: number;
+  contractorId: number;
   clientId: number;
   createdAt: Date;
   updatedAt: Date;

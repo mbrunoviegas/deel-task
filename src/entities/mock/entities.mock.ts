@@ -20,7 +20,7 @@ export const contractMock: Contract = {
   id: faker.number.int(),
   terms: faker.string.alphanumeric(),
   status: faker.helpers.arrayElement(Object.values(ContractStatus)),
-  contractId: faker.number.int(),
+  contractorId: faker.number.int(),
   clientId: faker.number.int(),
   createdAt: faker.date.past(),
   updatedAt: faker.date.recent(),

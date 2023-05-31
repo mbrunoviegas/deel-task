@@ -7,7 +7,7 @@ export class Contract {
 
   status: ContractStatus;
 
-  contractId: number;
+  contractorId: number;
 
   clientId: number;
 

@@ -3,6 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import { Controller } from '../port/controller';
 import { Request } from '../port/request';
 import { Response } from '../port/response';
+import { ContractNotFoundError } from '@usecases/errors/contract-not-found-error';
 
 @injectable()
 export class GetContractByIdController extends Controller {
@@ -23,9 +24,17 @@ export class GetContractByIdController extends Controller {
     });
 
     if (response.isFailure()) {
-      return this.internalError();
+      return this.mapError(response.value);
     }
 
     return this.ok(response.value);
+  }
+
+  private mapError(error: Error): Response {
+    if (error instanceof ContractNotFoundError) {
+      return this.notFoundError(error.message);
+    }
+
+    return this.internalError();
   }
 }

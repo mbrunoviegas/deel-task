@@ -3,7 +3,7 @@ import { sequelize } from '@external/database';
 import ContractsSequelize from '@external/database/models/contract.model';
 import JobsSequelize from '@external/database/models/job.model';
 import ProfileSequelize from '@external/database/models/profile.model';
-import { InsufficientAmountError } from '@usecases/errors/insuffient-amount-error';
+import { InsufficientAmountError } from '@usecases/errors/insufficient-amount-error';
 import { JobNotFoundError } from '@usecases/errors/job-not-found-error';
 import { JobsRepository, ListJobsOptions } from '@usecases/port/repositories/jobs-repository';
 import { Op, WhereOptions } from 'sequelize';

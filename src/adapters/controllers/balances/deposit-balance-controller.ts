@@ -4,6 +4,7 @@ import { DepositBalanceUseCase } from '@usecases/profile/deposit-balance/deposit
 import { Request } from '../port/request';
 import { Response } from '../port/response';
 import { DepositBalanceRequest } from '@usecases/profile/deposit-balance/interfaces/deposit-balance-request';
+import { InvalidAmountError } from '@usecases/errors/invalid-amount-error';
 
 @injectable()
 export class DepositBalanceController extends Controller {
@@ -22,9 +23,17 @@ export class DepositBalanceController extends Controller {
     const response = await this.useCase.execute({ depositAmount, userId });
 
     if (response.isFailure()) {
-      return this.internalError();
+      return this.mapError(response.value);
     }
 
     return this.ok();
+  }
+
+  private mapError(error: Error): Response {
+    if (error instanceof InvalidAmountError) {
+      return this.badRequestError(error.message);
+    }
+
+    return this.internalError();
   }
 }

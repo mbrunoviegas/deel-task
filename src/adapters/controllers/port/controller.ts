@@ -28,4 +28,13 @@ export abstract class Controller {
       },
     };
   }
+
+  protected badRequestError(message: string): Response {
+    return {
+      statusCode: 400,
+      body: {
+        message,
+      },
+    };
+  }
 }

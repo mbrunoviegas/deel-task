@@ -31,8 +31,8 @@ export class ContractsRepositorySequelize implements ContractsRepository {
         id: contract.id,
         terms: contract.terms,
         status: contract.status,
-        clientId: contract.client.id,
-        contractId: contract.contractor.id,
+        clientId: contract.clientId,
+        contractorId: contract.contractorId,
         createdAt: contract.createdAt,
         updatedAt: contract.updatedAt,
       } : undefined;
@@ -70,7 +70,7 @@ export class ContractsRepositorySequelize implements ContractsRepository {
         terms: dataValues.terms,
         status: dataValues.status,
         clientId: dataValues.clientId,
-        contractId: dataValues.contractorId,
+        contractorId: dataValues.contractorId,
         createdAt: dataValues.createdAt,
         updatedAt: dataValues.updatedAt,
       }));

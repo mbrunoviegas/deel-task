@@ -29,5 +29,11 @@ export default class Contract extends Model {
   
   @HasMany(() => Job, { as: 'job', foreignKey: 'contractId' })
     jobs: Job[];
+  
+  @Column
+    contractorId: number;
+
+  @Column
+    clientId: number;
 }
 
